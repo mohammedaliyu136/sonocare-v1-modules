@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sonocare_partner2/view/screens/verification/ambulance_steps/ambulance_step.dart';
+import 'package:sonocare_partner2/view/screens/verification/delivery_steps/delivery_step.dart';
 import 'package:sonocare_partner2/view/screens/verification/doctor_steps/doctor_step.dart';
+import 'package:sonocare_partner2/view/screens/verification/hospital_steps/hospital_step.dart';
 import 'package:sonocare_partner2/view/screens/verification/lab_steps/lab_step.dart';
-import 'package:sonocare_partner2/view/screens/verification/logistic_steps/logistic_step.dart';
 import 'package:sonocare_partner2/view/screens/verification/nurse_steps/nurse_step.dart';
 import 'package:sonocare_partner2/view/screens/verification/pharmacy_steps/pharmacy_step.dart';
 
@@ -29,7 +30,8 @@ class _VerificationScreenState extends State<VerificationScreen> {
           :selectedAccount =='nurse'?const NurseVerificationScreen()
           :selectedAccount =='ambulance'?const AmbulanceVerificationScreen()
           :selectedAccount =='lab'?const LabVerificationScreen()
-          :selectedAccount =='logistic'?const LogisticVerificationScreen()
-          :selectedAccount =='pharmacy'?const PharmacyVerificationScreen():Container();
+          :selectedAccount =='delivery'?const DeliveryVerificationScreen()
+          :selectedAccount =='pharmacy'?const PharmacyVerificationScreen()
+          :selectedAccount =='hospital'?const HospitalVerificationScreen():Container();
   }
 }

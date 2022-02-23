@@ -103,6 +103,6 @@ class OTPScreenState extends State<OTPScreen> {
       }
     });
     */
-    Get.toNamed('/verification', parameters: {'email':_emailController.text, 'password':_password,'accountType':_account});
+    Get.offAllNamed('/verification', parameters: {'email':_emailController.text, 'password':_password,'accountType':_account});
   }
 }

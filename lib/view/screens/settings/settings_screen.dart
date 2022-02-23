@@ -46,9 +46,10 @@ class SettingsScreen extends StatelessWidget {
                 leading: const Icon(Icons.visibility, color: Colors.white,),
                 trailing: const Icon(Icons.arrow_forward_ios, color: Colors.white,),
                 onTap: (){
+                  print('000000');
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const PrivacyScreen()),
+                    MaterialPageRoute(builder: (context) => PrivacyScreen()),
                   );
                 },
             ),

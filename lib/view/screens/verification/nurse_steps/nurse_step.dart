@@ -208,16 +208,14 @@ class _NurseVerificationScreenState extends State<NurseVerificationScreen> {
                             });
                           }
                           //dialog(context: context, text: 'Verification Pending for Dr. Prince David!', success: false);
-                        }
-                        if(step==2){
+                        }else if(step==2){
                           VerificationModel verificationModel = verificationFormController.nurseStep2Verified(context);
                           if(verificationModel.verified){
                             setState(() {
                               step+=1;
                             });
                           }
-                        }
-                        if(step==3){
+                        }else if(step==3){
                           VerificationModel verificationModel = verificationFormController.nurseStep3Verified(context);
                           if(verificationModel.verified){
                             setState(() {

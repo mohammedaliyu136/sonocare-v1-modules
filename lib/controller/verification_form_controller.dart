@@ -20,10 +20,29 @@ class VerificationFormController extends GetxController implements GetxService {
   TextEditingController otherLanguageController = TextEditingController();
   TextEditingController passportController = TextEditingController();
 
+  TextEditingController labNameController = TextEditingController();
+  TextEditingController labRegNoController = TextEditingController();
+  TextEditingController labCodeController = TextEditingController();
+
   TextEditingController accountNumberController = TextEditingController();
   TextEditingController accountNameController = TextEditingController();
   TextEditingController bankCodeController = TextEditingController();
+  TextEditingController bankNameController = TextEditingController();
+
+  TextEditingController cacNoController = TextEditingController();
+  TextEditingController pharmacyNameController = TextEditingController();
+
+  TextEditingController pharmacyRegNoController = TextEditingController();
+  TextEditingController pharmacyCodeController = TextEditingController();
   XFile? passport;
+
+  TextEditingController hospitalNameController = TextEditingController();
+  TextEditingController hospitalCategoryController = TextEditingController();
+  TextEditingController primaryCareController = TextEditingController();
+  TextEditingController secondaryCareController = TextEditingController();
+  TextEditingController tertiaryCareController = TextEditingController();
+  TextEditingController hospitalRegNumberController = TextEditingController();
+  TextEditingController hospitalCodeController = TextEditingController();
 
   TextEditingController countryController = TextEditingController();
   TextEditingController stateController = TextEditingController();
@@ -148,6 +167,8 @@ class VerificationFormController extends GetxController implements GetxService {
   }
 
   VerificationModel step1Verified(context){
+    print('verify step 1');
+    /*
     if(this.specialityController.text.isEmpty){
       //showCustomSnackBar('You have to enter speciality',  isError: true);
       //return VerificationModel(verified: false, message: '');
@@ -164,9 +185,11 @@ class VerificationFormController extends GetxController implements GetxService {
       showCustomSnackBar('You have to upload your passport',  isError: true);
       return VerificationModel(verified: false, message: '');
     }
+    */
     return VerificationModel(verified: true, message: 'verified');
   }
   VerificationModel step2Verified(context){
+    /*
     if(this.stateController.text.isEmpty){
       showCustomSnackBar('You have to select State',  isError: true);
       return VerificationModel(verified: false, message: '');
@@ -187,9 +210,11 @@ class VerificationFormController extends GetxController implements GetxService {
       showCustomSnackBar('You have to enter bank code',  isError: true);
       return VerificationModel(verified: false, message: '');
     }
+    */
     return VerificationModel(verified: true, message: 'verified');
   }
   VerificationModel step3Verified(context){
+    /*
     if(this.aboutMeController.text.isEmpty){
       showCustomSnackBar('The about me can not be empty',  isError: true);
       return VerificationModel(verified: false, message: '');
@@ -206,9 +231,11 @@ class VerificationFormController extends GetxController implements GetxService {
       showCustomSnackBar('You have to upload your Specialist Supporting Documents',  isError: true);
       return VerificationModel(verified: false, message: '');
     }
+    */
     return VerificationModel(verified: true, message: 'verified');
   }
   VerificationModel step4Verified(context){
+    /*
     if(this.companyOrganisationController.text.isEmpty){
       showCustomSnackBar('The Company / Organisation can not be empty',  isError: true);
       return VerificationModel(verified: false, message: '');
@@ -217,6 +244,7 @@ class VerificationFormController extends GetxController implements GetxService {
       showCustomSnackBar('From date can not be empty',  isError: true);
       return VerificationModel(verified: false, message: '');
     }
+    */
     return VerificationModel(verified: true, message: 'verified');
   }
 

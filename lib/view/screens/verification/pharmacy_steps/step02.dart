@@ -88,7 +88,7 @@ class Step02 extends StatelessWidget {
                             onChanged: (value){
                               verificationFormController.selectState(value!);
                             },
-                            value: verificationFormController.selectedState??verificationFormController.states[0],
+                            value: verificationFormController.selectedState.id==-1?verificationFormController.states[0]:verificationFormController.selectedState
                           ),
                           if(verificationFormController.isLoading)Row(children: const [Text('Loading States', style: TextStyle(color: ColorResources.COLOR_WHITE),),],),
                         ],

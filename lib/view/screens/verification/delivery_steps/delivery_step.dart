@@ -8,20 +8,20 @@ import 'package:sonocare_partner2/util/color_resources.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
 import 'package:sonocare_partner2/view/base/normalButton.dart';
 import 'package:sonocare_partner2/view/screens/otp/not_approved.dart';
-import 'package:sonocare_partner2/view/screens/verification/logistic_steps/step01.dart';
-import 'package:sonocare_partner2/view/screens/verification/logistic_steps/step02.dart';
-import 'package:sonocare_partner2/view/screens/verification/logistic_steps/step03.dart';
-import 'package:sonocare_partner2/view/screens/verification/logistic_steps/step04.dart';
+import 'package:sonocare_partner2/view/screens/verification/delivery_steps/step01.dart';
+import 'package:sonocare_partner2/view/screens/verification/delivery_steps/step02.dart';
+import 'package:sonocare_partner2/view/screens/verification/delivery_steps/step03.dart';
+import 'package:sonocare_partner2/view/screens/verification/delivery_steps/step04.dart';
 import 'package:sonocare_partner2/view/screens/verification/line.dart';
 
-class LogisticVerificationScreen extends StatefulWidget {
-  const LogisticVerificationScreen({Key? key}) : super(key: key);
+class DeliveryVerificationScreen extends StatefulWidget {
+  const DeliveryVerificationScreen({Key? key}) : super(key: key);
 
   @override
-  State<LogisticVerificationScreen> createState() => _LogisticVerificationScreenState();
+  State<DeliveryVerificationScreen> createState() => _DeliveryVerificationScreenState();
 }
 
-class _LogisticVerificationScreenState extends State<LogisticVerificationScreen> {
+class _DeliveryVerificationScreenState extends State<DeliveryVerificationScreen> {
   int step = 1;
   @override
   Widget build(BuildContext context) {
@@ -208,16 +208,14 @@ class _LogisticVerificationScreenState extends State<LogisticVerificationScreen>
                             });
                           }
                           //dialog(context: context, text: 'Verification Pending for Dr. Prince David!', success: false);
-                        }
-                        if(step==2){
+                        }else if(step==2){
                           VerificationModel verificationModel = verificationFormController.step2Verified(context);
                           if(verificationModel.verified){
                             setState(() {
                               step+=1;
                             });
                           }
-                        }
-                        if(step==3){
+                        }else if(step==3){
                           VerificationModel verificationModel = verificationFormController.step3Verified(context);
                           if(verificationModel.verified){
                             setState(() {
@@ -239,7 +237,7 @@ class _LogisticVerificationScreenState extends State<LogisticVerificationScreen>
                           print(verificationFormController.getStep4());
 
                           await verificationController.startUpload(
-                            //step1: verificationFormController.getStep1(Get.find<AuthController>().LogisticTypeList[0].title),
+                            //step1: verificationFormController.getStep1(Get.find<AuthController>().PharmacyTypeList[0].title),
                             step1: verificationFormController.getStep1(''),
                             step2: verificationFormController.getStep2(),
                             step3: verificationFormController.getStep3(),
@@ -256,8 +254,7 @@ class _LogisticVerificationScreenState extends State<LogisticVerificationScreen>
                               MaterialPageRoute(builder: (context) => NotApprovedScreen()),
                             );
                           });
-                          */
-
+                      */
                         }
                       }
                     },

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sonocare_partner2/controller/lab_controller.dart';
 import 'package:sonocare_partner2/util/color_resources.dart';
+import 'package:sonocare_partner2/util/images.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
 import 'package:sonocare_partner2/view/base/textFieldNotStyled.dart';
 import 'package:sonocare_partner2/view/screens/lab/category/widgets/search_text_field.dart';
@@ -35,6 +36,9 @@ class _LabCategoryScreenState extends State<LabCategoryScreen> {
           ),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            leading: GestureDetector(
+                onTap: ()=>Get.back(),
+                child: Image.asset(Images.backArrowIcon)),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),

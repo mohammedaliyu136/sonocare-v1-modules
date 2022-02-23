@@ -5,9 +5,10 @@ import 'package:sonocare_partner2/controller/pharmacy_controller.dart';
 import 'package:sonocare_partner2/data/model/response/lab_model.dart';
 import 'package:sonocare_partner2/data/model/response/pharmacy_model.dart';
 import 'package:sonocare_partner2/util/color_resources.dart';
+import 'package:sonocare_partner2/util/images.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
 import 'package:sonocare_partner2/view/base/textFieldNotStyled.dart';
-import 'package:sonocare_partner2/view/screens/lab/test/widgets/search_text_field.dart';
+import 'package:sonocare_partner2/view/screens/pharmacy/product/widgets/search_text_field.dart';
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final searchCategoryController = TextEditingController();
-  late PharmacyCategoryModel pharmacyCategory;
+  late DrugCategoryModel pharmacyCategory;
 
   @override
   void initState() {
@@ -42,6 +43,9 @@ class _ProductScreenState extends State<ProductScreen> {
           ),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            leading: GestureDetector(
+                onTap: ()=>Navigator.pop(context),
+                child: Image.asset(Images.backArrowIcon)),
             /*
             actions: [
               IconButton(onPressed: ()=>Get.toNamed('/pharmacy/category/edit', arguments: pharmacyCategory), icon: const Icon(Icons.edit))
@@ -70,7 +74,7 @@ class _ProductScreenState extends State<ProductScreen> {
                             if(pharmacyController.pharmacyProducts.length-1==index){
                               return Column(children: [
                                 GestureDetector(
-                                  onTap: (){Get.toNamed('/pharmacy/product');},
+                                  onTap: (){Get.toNamed('/pharmacy/product/edit', arguments: pharmacyController.pharmacyProducts[index]);},
                                   child: Padding(
                                     padding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 8),
                                     child: Container(

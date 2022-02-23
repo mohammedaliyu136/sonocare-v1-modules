@@ -8,6 +8,7 @@ import 'package:sonocare_partner2/controller/app_controller.dart';
 import 'package:sonocare_partner2/controller/appointment_controller.dart';
 import 'package:sonocare_partner2/controller/auth_controller.dart';
 import 'package:sonocare_partner2/controller/delivery_controller.dart';
+import 'package:sonocare_partner2/controller/hospital_controller.dart';
 import 'package:sonocare_partner2/controller/lab_controller.dart';
 import 'package:sonocare_partner2/controller/localization_controller.dart';
 import 'package:sonocare_partner2/controller/map_controller.dart';
@@ -27,6 +28,7 @@ import 'package:sonocare_partner2/data/repository/ambulance_repo.dart';
 import 'package:sonocare_partner2/data/repository/appointment_repo.dart';
 import 'package:sonocare_partner2/data/repository/auth_repo.dart';
 import 'package:sonocare_partner2/data/repository/delivery_repo.dart';
+import 'package:sonocare_partner2/data/repository/hospital_repo.dart';
 import 'package:sonocare_partner2/data/repository/lab_repo.dart';
 import 'package:sonocare_partner2/data/repository/language_repo.dart';
 import 'package:sonocare_partner2/data/repository/map_repo.dart';
@@ -61,6 +63,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => AppointmentRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => MapRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
   Get.lazyPut(() => PrescriptionRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
+  Get.lazyPut(() => HospitalRepo(apiClient: Get.find(), sharedPreferences: Get.find()));
 
   // Controller
   Get.lazyPut(() => ThemeController(sharedPreferences: Get.find()));
@@ -81,6 +84,7 @@ Future<Map<String, Map<String, String>>> init() async {
   Get.lazyPut(() => AppointmentController(appointmentRepo: Get.find()));
   Get.lazyPut(() => MapController(mapRepo: Get.find()));
   Get.lazyPut(() => PrescriptionController(prescriptionRepo: Get.find()));
+  Get.lazyPut(() => HospitalController(hospitalRepo: Get.find(),));
 
   // Retrieving localized data
   Map<String, Map<String, String>> _languages = Map();

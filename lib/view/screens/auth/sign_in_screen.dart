@@ -29,8 +29,10 @@ class __SignInFormState extends State<LoginScreen> {
   bool _autoValidate = false;
 
   //List<String> accountTypeList = ['Lab', 'Pharmacy', 'Delivery', 'Doctor', 'Nurse'];
-  List<String> accountTypeList = ['Doctor', 'Nurse', 'Lab', 'Pharmacy', 'Ambulance', 'Delivery'];
-  String selectedAccount = 'Doctor';
+  List<String> accountTypeList = [
+    //'Doctor', 'Nurse',
+    'Lab', 'Pharmacy', 'Hospital', 'Ambulance', 'Delivery', 'Pickup'];
+  String selectedAccount = 'Lab';
 
 
   @override
@@ -158,6 +160,12 @@ class __SignInFormState extends State<LoginScreen> {
                                }else if(selectedAccount=='Ambulance'){
                                  dashPath = '/ambulance/dashboard';
                                  loginUrl = '/api/ambulancelogin';
+                               }else if(selectedAccount=='Hospital'){
+                                 dashPath = '/hospital/dashboard';
+                                 loginUrl = '/api/ambulancelogin';
+                               }else if(selectedAccount=='Pickup'){
+                                 dashPath = '/pickup/dashboard';
+                                 loginUrl = '/api/pickup';
                                }
 
                                if(selectedAccount=='Doctor' || selectedAccount=='Nurse'){
@@ -186,7 +194,8 @@ class __SignInFormState extends State<LoginScreen> {
                         //Provider.of<AuthProvider>(context, listen: false).getDoctorType();
                         //Navigator.pop(context);
                         //Get.to(const RegisterScreen());
-                        Get.toNamed('/sign-up');
+                        Get.find<AuthController>().getStates(context);
+                        Get.toNamed('/account/type');
                       },
                       child: Padding(
                         padding: const EdgeInsets.all(18.0),

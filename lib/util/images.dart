@@ -9,7 +9,11 @@ class Images {
   static const String bg_1 = 'assets/image/bg_1.png';
   static const String backArrowIcon = 'assets/image/back-arrow_icon.png';
 
+  static const String hospitalCategoryImage = 'assets/image/hospital_category_img.png';
   static const String ambulanceCategoryImage = 'assets/image/ambulance_category_img.png';
+  static const String ambulanceDropIcon = 'assets/image/ambulance_drop_icon.png';
+  static const String deliveryDropIcon = 'assets/image/delivery_drop_icon.png';
+  static const String nurseDropIcon = 'assets/image/nurse_drop_icon.png';
   static const String doctorCategoryImage = 'assets/image/doctor_category_img.png';
   static const String nurseCategoryImage = 'assets/image/nurse_category_img.png';
   static const String labCategoryImage = 'assets/image/lab_category_img.png';

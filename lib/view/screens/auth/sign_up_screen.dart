@@ -1,20 +1,14 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sonocare_partner2/controller/auth_controller.dart';
-import 'package:sonocare_partner2/util/color_resources.dart';
-import 'package:sonocare_partner2/util/images.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
-import 'package:sonocare_partner2/view/base/custom_snackbar.dart';
-import 'package:sonocare_partner2/view/base/normalButton.dart';
-import 'package:sonocare_partner2/view/base/textField.dart';
 import 'package:sonocare_partner2/view/screens/auth/widget/forms/ambulance_form.dart';
+import 'package:sonocare_partner2/view/screens/auth/widget/forms/delivery_form.dart';
 import 'package:sonocare_partner2/view/screens/auth/widget/forms/doctor_form.dart';
+import 'package:sonocare_partner2/view/screens/auth/widget/forms/hospital_form.dart';
 import 'package:sonocare_partner2/view/screens/auth/widget/forms/lab_form.dart';
-import 'package:sonocare_partner2/view/screens/auth/widget/forms/logistic_form.dart';
 import 'package:sonocare_partner2/view/screens/auth/widget/forms/nurse_form.dart';
 import 'package:sonocare_partner2/view/screens/auth/widget/forms/pharmacy_form.dart';
+import 'package:sonocare_partner2/view/screens/auth/widget/forms/pickup_form.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -55,12 +49,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
         const BackGround(),
         Scaffold(
           backgroundColor: Colors.transparent,
-          body:selectedAccount =='doctor'?const DoctorForm()
-              :selectedAccount =='nurse'?const NurseForm()
+          body
+            //  :selectedAccount =='doctor'?const DoctorForm()
+            //  :selectedAccount =='nurse'?const NurseForm()
               :selectedAccount =='ambulance'?const AmbulanceForm()
               :selectedAccount =='lab'?const LabForm()
-              :selectedAccount=='logistic'?const LogisticForm()
-              :selectedAccount=='pharmacy'?const PharmacyForm():Container()
+              :selectedAccount =='delivery'?const DeliveryForm()
+              :selectedAccount =='pickup'?const PickupForm()
+              :selectedAccount =='pharmacy'?const PharmacyForm()
+              :selectedAccount =='hospital'?const HospitalForm():Container()
         ),
       ],
     );

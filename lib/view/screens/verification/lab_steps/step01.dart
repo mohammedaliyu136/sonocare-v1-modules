@@ -42,48 +42,6 @@ class _Step01State extends State<Step01> {
                   padding: EdgeInsets.only(left: 26.0, top: 10.0, bottom: 20.0),
                   child:  Text('Personal Information', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),),
                 ),
-                Column(
-                  children: [
-                    Row(
-                      children: [
-                        const Padding(
-                          padding: EdgeInsets.all(12.0),
-                          child: Icon(Icons.person, color: Colors.white,),
-                        ),
-                        SizedBox(width: 1,child: Container(color: Colors.white,), height: 64,),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(left: 15.0, bottom: 0),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                const Text('Gender', textAlign: TextAlign.start, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400, color: Colors.white),),
-                                DropdownButton<String>(
-                                  isExpanded: true,
-                                  dropdownColor: ColorResources.COLOR_PURPLE_DEEP,
-                                  underline: Container(color: Colors.transparent),
-                                  items: ['Male', 'Female'].map((String dropDownStringItem) {
-                                    return DropdownMenuItem<String>(
-                                      value: dropDownStringItem,
-                                      child: Text(dropDownStringItem, style: const TextStyle(color: Colors.white),),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value){
-                                    verificationFormController.setGender(value!);
-                                  },
-                                  value: verificationFormController.genderController.text==''?'Male':verificationFormController.genderController.text,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width,child: Container(color: Colors.white,), height: 1,),
-                  ],
-                ),
-                const SizedBox(height: 15,),
                 //textField(label: 'Speciality', icon: Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter Speciality', controller: formVerificationProvider.specialityController, validator: (){}, onChanged: (){}),
                 /*
                 Padding(
@@ -145,6 +103,7 @@ class _Step01State extends State<Step01> {
                 ),
                 const SizedBox(height: 15,),
                 */
+                /*
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 0.0),
                   child: Column(
@@ -198,11 +157,14 @@ class _Step01State extends State<Step01> {
                     ],
                   ),
                 ),
+                */
                 //textField(label: 'Language Spoken', icon: Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter Language Spoken', controller: formVerificationProvider.languageSpokenController, validator: (){}, onChanged: (){}),
                 const SizedBox(height: 15,),
-                textField(label: 'MCDN Number', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter MCDN Number', controller: verificationFormController.mcdnNumberController, validator: (){}, onChanged: (){}),
-                //SizedBox(height: 15,),
-                //textField(label: 'other Language', icon: Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter other Language', controller: formVerificationProvider.otherLanguageController, validator: (){}, onChanged: (){}),
+                textField(label: 'Lab Name', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter Lab Name', controller: verificationFormController.labNameController, validator: (){}, onChanged: (){}),
+                const SizedBox(height: 15,),
+                textField(label: 'Lab Reg. No', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter Lab Reg. No.', controller: verificationFormController.labRegNoController, validator: (){}, onChanged: (){}),
+                const SizedBox(height: 15,),
+                textField(label: 'Lab Code', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter Lab Code', controller: verificationFormController.labCodeController, validator: (){}, onChanged: (){}),
                 const SizedBox(height: 15,),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 0.0),

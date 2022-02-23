@@ -8,21 +8,17 @@ import 'package:sonocare_partner2/view/base/custom_snackbar.dart';
 import 'package:sonocare_partner2/view/base/normalButton.dart';
 import 'package:sonocare_partner2/view/base/textField.dart';
 
-class LogisticForm extends StatefulWidget {
-  const LogisticForm({Key? key}) : super(key: key);
+class HospitalForm extends StatefulWidget {
+  const HospitalForm({Key? key}) : super(key: key);
 
   @override
-  State<LogisticForm> createState() => _LogisticFormState();
+  State<HospitalForm> createState() => _HospitalFormState();
 }
 
-class _LogisticFormState extends State<LogisticForm> {
+class _HospitalFormState extends State<HospitalForm> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneNumberController = TextEditingController();
-  final _dobController = TextEditingController();
-  final _lgaIDController = TextEditingController();
-  final _stateIDController = TextEditingController();
-  final _feeController = TextEditingController();
   final _serviceIDController = TextEditingController();
   final _passwordController = TextEditingController();
   final _passwordConfirmationController = TextEditingController();
@@ -54,37 +50,12 @@ class _LogisticFormState extends State<LogisticForm> {
           const SizedBox(height: 20,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: textField(hintText: 'dob_hint', label:'dob'.tr, icon: const Icon(Icons.call, color: Colors.white,), controller: _dobController, validator: (){}, onChanged: (){}),
-          ),
-          const SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: textField(obscureText: true, hintText: 'password_hint'.tr, label:'password'.tr, icon: const Icon(Icons.lock, color: Colors.white), controller: _passwordController, validator: (){}, onChanged: (){}),
           ),
           const SizedBox(height: 10,),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: textField(obscureText: true, hintText: 'confirm_password_hint'.tr, label:'confirm_password'.tr, icon: const Icon(Icons.lock, color: Colors.white), controller: _passwordConfirmationController, validator: (){}, onChanged: (){}),
-          ),
-          const SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: textField(obscureText: true, hintText: 'service_id_hint'.tr, label:'service_id'.tr, icon: const Icon(Icons.lock, color: Colors.transparent), controller: _serviceIDController, validator: (){}, onChanged: (){}),
-          ),
-          const SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: textField(obscureText: true, hintText: 'lga_id_hint'.tr, label:'service_id'.tr, icon: const Icon(Icons.lock, color: Colors.transparent), controller: _lgaIDController, validator: (){}, onChanged: (){}),
-          ),
-          const SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: textField(obscureText: true, hintText: 'state_id_hint'.tr, label:'service_id'.tr, icon: const Icon(Icons.lock, color: Colors.transparent), controller: _stateIDController, validator: (){}, onChanged: (){}),
-          ),
-          const SizedBox(height: 20,),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
-            child: textField(obscureText: true, hintText: 'fee_hint'.tr, label:'fee'.tr, icon: const Icon(Icons.lock, color: Colors.transparent), controller: _feeController, validator: (){}, onChanged: (){}),
           ),
           const SizedBox(height: 20,),
           Row(
@@ -131,10 +102,6 @@ class _LogisticFormState extends State<LogisticForm> {
     String _email = _emailController.text.trim();
     String _number = _phoneNumberController.text.trim();
     String _serviceID = _serviceIDController.text.trim();
-    String _lgaID = _lgaIDController.text.trim();
-    String _stateID = _stateIDController.text.trim();
-    String _fee = _feeController.text.trim();
-    String _dob = _dobController.text.trim();
     String _password = _passwordController.text.trim();
     String _confirmPassword = _passwordConfirmationController.text.trim();
 
@@ -154,14 +121,14 @@ class _LogisticFormState extends State<LogisticForm> {
     }else if (_password != _confirmPassword) {
       showCustomSnackBar('confirm_password_does_not_matched'.tr);
     }else {
-      LogisticSignUpBody logisticSignUpBody = LogisticSignUpBody(name: _name, email: _email, phone: _number, password: _password, serviceID: _serviceID, dob: _dob, lgaID: _lgaID, fee: _fee, stateID: _stateID);
-      authController.registration(logisticSignUpBody:logisticSignUpBody, accountType: 'logistic').then((status) async {
+      PharmacySignUpBody pharmacySignUpBody = PharmacySignUpBody(name: _name, email: _email, phone: _number, password: _password, serviceID: _serviceID);
+      authController.registration(pharmacySignUpBody:pharmacySignUpBody, accountType:'pharmacy').then((status) async {
         if (status.isSuccess) {
         }else {
           showCustomSnackBar(status.message);
         }
       });
     }*/
-    Get.toNamed('/otp', parameters: {'email':_email, 'password':_password,'accountType':'logistic'});
+    Get.toNamed('/otp', parameters: {'email':_email, 'password':_password,'accountType':'hospital'});
   }
 }

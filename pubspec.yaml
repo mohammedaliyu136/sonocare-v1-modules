@@ -57,6 +57,9 @@ dependencies:
   agora_rtc_engine: ^4.0.1
   permission_handler: ^8.2.6
 
+  webview_flutter: ^3.0.0
+  share_plus: ^3.0.4
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -86,6 +89,7 @@ flutter:
   assets:
     - assets/image/
     - assets/language/
+    - assets/icons/gift_icon.png
     - assets/logo/main_logo.png
     - assets/logo/main_logo_sm.png
     - assets/logo/scope.png

@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:sonocare_partner2/util/color_resources.dart';
 import 'package:sonocare_partner2/util/images.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
-class HelpScreen extends StatelessWidget {
+class HelpScreen extends StatefulWidget {
   const HelpScreen({Key? key}) : super(key: key);
 
+  @override
+  State<HelpScreen> createState() => _HelpScreenState();
+}
 
+class _HelpScreenState extends State<HelpScreen> {
+  bool isLoading = true;
+  late WebViewController _controller;
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -21,7 +29,31 @@ class HelpScreen extends StatelessWidget {
             title: const Text('Help', style: TextStyle(color: Colors.white),),
             elevation: 0,
           ),
-          body: ListView(children: const [])
+          body: Stack(
+            children: [
+              WebView(
+                initialUrl: 'https://sonocare.com.ng/contact-us/',
+                javascriptMode: JavascriptMode.unrestricted,
+                onWebViewCreated: (WebViewController webViewController) {
+                  _controller = webViewController;
+                },
+                onPageFinished: (String url) {
+                  print('Page finished loading: $url');
+                  setState(() {
+                    isLoading = false;
+                  });
+                },
+                onProgress: (int progress) {
+                  print('WebView is loading (progress : $progress%)');
+                },
+              ),
+              if(isLoading)Container(height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,color: ColorResources.COLOR_PURPLE_DEEP,),
+              if(isLoading)Align(
+                  alignment: Alignment.center,
+                  child: Row(mainAxisAlignment: MainAxisAlignment.center, children: const [CircularProgressIndicator(color: Colors.red,),],)),
+            ],
+          ),
       )
     ],);
   }

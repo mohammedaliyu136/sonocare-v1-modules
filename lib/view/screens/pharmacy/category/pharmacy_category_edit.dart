@@ -21,7 +21,7 @@ class _PharmacyCategoryEditScreenState extends State<PharmacyCategoryEditScreen>
   final testNameController = TextEditingController();
 
   final testFeeController = TextEditingController();
-  late PharmacyCategoryModel pharmacyCategory;
+  late DrugCategoryModel pharmacyCategory;
   bool update = false;
 
   @override
@@ -116,7 +116,7 @@ class _PharmacyCategoryEditScreenState extends State<PharmacyCategoryEditScreen>
                                     if(update){
 
                                     }else{
-                                      pharmacyController.addPharmacyCategory(pharmacyCategoryModel: PharmacyCategoryModel(id: '', name: categoryNameController.text)).then((response){
+                                      pharmacyController.addPharmacyCategory(pharmacyCategoryModel: DrugCategoryModel(id: '', name: categoryNameController.text)).then((response){
                                         if(response){
                                           Get.back();
                                         }

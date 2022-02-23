@@ -64,6 +64,7 @@ class LabController extends GetxController implements GetxService {
     labRequests = [];
     loadingLab = true;
     await Future.delayed(const Duration(seconds: 3));
+    /*
     for( var i = 0 ; i < 10; i++ ) {
       List<LabTestModel> tests = [];
       for( var t = 0 ; t < 5; t++ ) {
@@ -71,6 +72,20 @@ class LabController extends GetxController implements GetxService {
       }
       labRequests.add(LabRequestsModel(id: '$i', name: 'lab cat $i', tests: tests, image: '', patientProfile: PatientProfileModel(id: '', name: 'Mohammed Aliyu')));
     }
+    */
+    //------------------
+
+    List<LabTestModel> tests = [];
+    tests.add(LabTestModel(name: 'Urinalysis', fee: '123', id: ''));
+    tests.add(LabTestModel(name: 'Thyroid Profile III', fee: '123', id: ''));
+    tests.add(LabTestModel(name: 'Complete Blood Count and Differential', fee: '123', id: ''));
+    tests.add(LabTestModel(name: 'Basic Metabolic Panel', fee: '123', id: ''));
+    tests.add(LabTestModel(name: 'Comprehensive Metabolic Panel', fee: '123', id: ''));
+    labRequests.add(LabRequestsModel(id: '1', name: 'Abigail Alexandra', tests: tests, image: '', patientProfile: PatientProfileModel(id: '', name: 'Abigail Alexandra')));
+    labRequests.add(LabRequestsModel(id: '2', name: 'Caroline Carolyn', tests: tests, image: '', patientProfile: PatientProfileModel(id: '', name: 'Caroline Carolyn')));
+    labRequests.add(LabRequestsModel(id: '3', name: 'Lillian Lily', tests: tests, image: '', patientProfile: PatientProfileModel(id: '', name: 'Lillian Lily')));
+    labRequests.add(LabRequestsModel(id: '4', name: 'Sonia Sophie', tests: tests, image: '', patientProfile: PatientProfileModel(id: '', name: 'Sonia Sophie')));
+    //------------------
     loadingLab = false;
     update();
   }

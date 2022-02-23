@@ -18,55 +18,7 @@ class Step04 extends StatelessWidget {
           ),
           textField(label: 'Hospital / Company / Organisation', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter Company / Organisation', controller: verificationFormController.companyOrganisationController, validator: (){}, onChanged: (){}),
           const SizedBox(height: 15,),
-          GestureDetector(
-              onTap: ()=>DatePicker.showDatePicker(context,
-                  showTitleActions: true,
-                  minTime: DateTime(1960, 1, 1),
-                  maxTime: DateTime.now(),
-                  theme: const DatePickerTheme(
-                      headerColor: ColorResources.COLOR_PURPLE_DEEP,
-                      backgroundColor: ColorResources.COLOR_PURPLE_DEEP,
-                      itemStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                      doneStyle:
-                      TextStyle(color: Colors.white, fontSize: 16)),
-                  onChanged: (date) {
-                     List<String> datearray = date.toString().split(' ')[0].split('-');
-                     String dateStr = datearray[2]+'/'+datearray[1]+'/'+datearray[0];
-                     verificationFormController.setFromDate(dateStr);
-                  }, onConfirm: (date) {
-                    List<String> datearray = date.toString().split(' ')[0].split('-');
-                    String dateStr = datearray[2]+'/'+datearray[1]+'/'+datearray[0];
-                    verificationFormController.setFromDate(dateStr);
-                  }, currentTime: DateTime.now(), locale: LocaleType.en),
-              child: textField(label: 'From', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter date you started', controller: verificationFormController.fromController, validator: (){}, onChanged: (){}, enable: false,)),
-          const SizedBox(height: 15,),
-          GestureDetector(
-              onTap: ()=>DatePicker.showDatePicker(context,
-                  showTitleActions: true,
-                  minTime: DateTime(1960, 1, 1),
-                  maxTime: DateTime.now(),
-                  theme: const DatePickerTheme(
-                      headerColor: ColorResources.COLOR_PURPLE_DEEP,
-                      backgroundColor: ColorResources.COLOR_PURPLE_DEEP,
-                      itemStyle: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                      doneStyle:
-                      TextStyle(color: Colors.white, fontSize: 16)),
-                  onChanged: (date) {
-                    List<String> datearray = date.toString().split(' ')[0].split('-');
-                    String dateStr = datearray[2]+'/'+datearray[1]+'/'+datearray[0];
-                    verificationFormController.setToDate(dateStr);
-                  }, onConfirm: (date) {
-                    List<String> datearray = date.toString().split(' ')[0].split('-');
-                    String dateStr = datearray[2]+'/'+datearray[1]+'/'+datearray[0];
-                    verificationFormController.setToDate(dateStr);
-                  }, currentTime: DateTime.now(), locale: LocaleType.en),
-              child: textField(label: 'To', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Leave as is you still work here', controller: verificationFormController.toController, validator: (){}, onChanged: (){}, enable: false,)),
+          textField(label: 'CAC Reg.', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter CAC Reg. No.', controller: verificationFormController.cacNoController, validator: (){}, onChanged: (){}, enable: false,),
           const SizedBox(height: 15,),
           Row(children: [
           Theme(

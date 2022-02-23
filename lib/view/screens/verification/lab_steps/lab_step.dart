@@ -206,18 +206,16 @@ class _LabVerificationScreenState extends State<LabVerificationScreen> {
                             setState(() {
                               step+=1;
                             });
+                            print(step);
                           }
-                          //dialog(context: context, text: 'Verification Pending for Dr. Prince David!', success: false);
-                        }
-                        if(step==2){
+                        }else if(step==2){
                           VerificationModel verificationModel = verificationFormController.step2Verified(context);
                           if(verificationModel.verified){
                             setState(() {
                               step+=1;
                             });
                           }
-                        }
-                        if(step==3){
+                        }else if(step==3){
                           VerificationModel verificationModel = verificationFormController.step3Verified(context);
                           if(verificationModel.verified){
                             setState(() {

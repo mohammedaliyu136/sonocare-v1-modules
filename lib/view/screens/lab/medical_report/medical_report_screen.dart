@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sonocare_partner2/util/color_resources.dart';
+import 'package:sonocare_partner2/util/images.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
 import 'package:sonocare_partner2/view/base/normalButton.dart';
 import 'package:sonocare_partner2/view/base/textField.dart';
@@ -25,6 +26,9 @@ class MedicalReportScreen extends StatelessWidget {
           ),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            leading: GestureDetector(
+                onTap: ()=>Get.back(),
+                child: Image.asset(Images.backArrowIcon)),
           ),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),

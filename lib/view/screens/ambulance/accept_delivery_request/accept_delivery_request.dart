@@ -96,7 +96,7 @@ class _AcceptDeliveryRequestScreenState extends State<AcceptAmbulanceRequestScre
                         child: Row(children: [
                           Image.asset(Images.backArrowIcon),
                           const SizedBox(width: 30,),
-                          const Text('Accept Delivery Requests', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),),
+                          const Text('Accept Ambulance Requests', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),),
                         ],),
                       ),
                     ),

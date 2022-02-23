@@ -88,7 +88,7 @@ class Step02 extends StatelessWidget {
                             onChanged: (value){
                               verificationFormController.selectState(value!);
                             },
-                            value: verificationFormController.selectedState??verificationFormController.states[0],
+                            value: verificationFormController.selectedState.id==-1?verificationFormController.states[0]:verificationFormController.selectedState
                           ),
                           if(verificationFormController.isLoading)Row(children: const [Text('Loading States', style: TextStyle(color: ColorResources.COLOR_WHITE),),],),
                         ],
@@ -106,6 +106,13 @@ class Step02 extends StatelessWidget {
           GestureDetector(
               onTap: ()=>verificationFormController.takeIDCard(),
               child: textField(label: 'ID Card', icon: const Icon(Icons.upload_rounded, color: Colors.white,), hintText: 'Select ID Card', controller: verificationFormController.idCardController, validator: (){}, onChanged: (){}, enable: false,)),
+
+          textField(label: 'Account Number', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter account number', controller: verificationFormController.referredByController, validator: (){}, onChanged: (){}),
+          const SizedBox(height: 15,),
+          textField(label: 'Account Name', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter account name', controller: verificationFormController.referredByController, validator: (){}, onChanged: (){}),
+          const SizedBox(height: 15,),
+          textField(label: 'Account bank name', icon: const Icon(Icons.account_circle_outlined, color: Colors.transparent,), hintText: 'Enter bank name', controller: verificationFormController.referredByController, validator: (){}, onChanged: (){}),
+          const SizedBox(height: 15,),
         ],);
       }
     );

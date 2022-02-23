@@ -32,9 +32,18 @@ class DeliveryController extends GetxController implements GetxService {
     deliveryRequests = [];
     loadingDelivery = true;
     await Future.delayed(const Duration(seconds: 3));
+    /*
     for( var i = 0 ; i < 10; i++ ) {
       deliveryRequests.add(DeliveryRequestsModel(id: '$i', name: 'Delivery request ${i+1}', image: '', location: '24 I.T Igbani Street, Jabi, Abuja', detail: 'To Deliver drugs to patient'));
-    }
+    }*/
+    //---------------------
+    deliveryRequests.add(DeliveryRequestsModel(id: '1', name: 'Titi Ogunwande', image: '', location: '62 Yussuf Street, Abuja', detail: 'To Deliver drugs to patient'));
+    deliveryRequests.add(DeliveryRequestsModel(id: '2', name: 'Sekinat Ayobami', image: '', location: '79 Okonkwo Street, Abuja', detail: 'To Deliver drugs to patient'));
+    deliveryRequests.add(DeliveryRequestsModel(id: '3', name: 'Ebiere Maryam', image: '', location: '16 Oluwakemi Street, Abuja', detail: 'To Deliver drugs to patient'));
+    deliveryRequests.add(DeliveryRequestsModel(id: '4', name: 'Alade Bankole Omobolaji', image: '', location: '39 Makuachukwu Street, Abuja', detail: 'To Deliver drugs to patient'));
+    deliveryRequests.add(DeliveryRequestsModel(id: '5', name: 'Buchi Shade Maryam', image: '', location: '73 Emmanuel Street, Abuja', detail: 'To Deliver drugs to patient'));
+    deliveryRequests.add(DeliveryRequestsModel(id: '6', name: 'Cherechi Jolayemi David', image: '', location: '81 Kimberly Street, Abuja', detail: 'To Deliver drugs to patient'));
+    deliveryRequests.add(DeliveryRequestsModel(id: '7', name: 'Aminu Zainab Sylvester', image: '', location: '3 25 Okunola Street, Abuja', detail: 'To Deliver drugs to patient'));
     loadingDelivery = false;
     update();
   }

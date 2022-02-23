@@ -82,7 +82,7 @@ class AppConstants {
 
   // Shared Key
   static const String THEME = 'theme';
-  static const String TOKEN = 'multivendor_token';
+  static const String TOKEN = 'token';
   static const String COUNTRY_CODE = 'country_code';
   static const String LANGUAGE_CODE = 'language_code';
   static const String CART_LIST = 'cart_list';
@@ -94,8 +94,6 @@ class AppConstants {
   static const String SEARCH_HISTORY = 'search_history';
   static const String INTRO = 'intro';
   static const String NOTIFICATION_COUNT = 'notification_count';
-  static const String TOPIC = 'all_zone_customer';
-  static const String ZONE_ID = 'zoneId';
 
 
   static const appId = "da2e58ec2ef84ca29aa5d23c7523fb82";

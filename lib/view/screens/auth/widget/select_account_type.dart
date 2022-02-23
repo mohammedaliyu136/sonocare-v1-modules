@@ -22,7 +22,9 @@ class SelectAccountTypeScreen extends StatefulWidget {
 
 class _SelectAccountTypeScreenState extends State<SelectAccountTypeScreen> {
   int selectedAccountType = -1;
-  List<String> accountTypes = ['doctor', 'nurse', 'lab', 'pharmacy', 'ambulance', 'logistic'];
+  List<String> accountTypes = [
+    //'doctor', 'nurse',
+    'lab', 'pharmacy', 'ambulance', 'delivery', 'pickup', 'hospital'];
 
   @override
   void initState() {
@@ -39,11 +41,18 @@ class _SelectAccountTypeScreenState extends State<SelectAccountTypeScreen> {
         const BackGround(),
         Scaffold(
             backgroundColor: Colors.transparent,
-            appBar: AppBar(title: const Text('You are a', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.white),), backgroundColor: Colors.transparent, elevation: 0,),
+            appBar: AppBar(
+              title: const Text('You are a', style: TextStyle(fontSize: 30, fontWeight: FontWeight.w600, color: Colors.white),),
+              backgroundColor: Colors.transparent, elevation: 0,
+              leading: GestureDetector(
+                onTap: ()=>Get.back(),
+                child: Image.asset(Images.backArrowIcon)),
+              ),
             body: SafeArea(
               child: Stack(
                 children: [
                   ListView(children: [
+                    /*
                     Padding(
                       padding: const EdgeInsets.only(left: 13.0, right: 13.0, top: 14.0),
                       child: Row(
@@ -53,13 +62,14 @@ class _SelectAccountTypeScreenState extends State<SelectAccountTypeScreen> {
                           accountTypeWidget(context:context, index:2, text:'NURSE',image:Images.nurseCategoryImage),
                       ],),
                     ),
+                    */
                     Padding(
                       padding: const EdgeInsets.only(left: 13.0,right: 13.0, top: 13.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          accountTypeWidget(context:context, index:3, text:'LABORATORY',image:Images.labCategoryImage),
-                          accountTypeWidget(context:context, index:4, text:'PHARMACY',image:Images.pharmacyCategoryImage),
+                          accountTypeWidget(context:context, index:1, text:'LABORATORY',image:Images.labCategoryImage),
+                          accountTypeWidget(context:context, index:2, text:'PHARMACY',image:Images.pharmacyCategoryImage),
                         ],),
                     ),
                     Padding(
@@ -67,8 +77,17 @@ class _SelectAccountTypeScreenState extends State<SelectAccountTypeScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          accountTypeWidget(context:context, index:5, text:'AMBULANCE',image:Images.ambulanceCategoryImage),
-                          accountTypeWidget(context:context, index:6, text:'LOGISTIC',image:Images.logisticCategoryImage),
+                          accountTypeWidget(context:context, index:3, text:'AMBULANCE',image:Images.ambulanceCategoryImage),
+                          accountTypeWidget(context:context, index:4, text:'DELIVERY',image:Images.logisticCategoryImage),
+                        ],),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 13.0,right: 13.0, top: 13.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          accountTypeWidget(context:context, index:6, text:'PICKUP',image:Images.logisticCategoryImage),
+                          accountTypeWidget(context:context, index:5, text:'HOSPITAL',image:Images.hospitalCategoryImage),
                         ],),
                     ),
                   ],),
@@ -84,6 +103,7 @@ class _SelectAccountTypeScreenState extends State<SelectAccountTypeScreen> {
                               primaryColor: ColorResources.COLOR_WHITE,
                               fontSize: 16,
                               onTap: (){
+                                print('-------------------------');
                                 print(accountTypes[selectedAccountType-1]);
                                 Get.toNamed('/sign-up', arguments: accountTypes[selectedAccountType-1]);
                               }
@@ -106,7 +126,7 @@ class _SelectAccountTypeScreenState extends State<SelectAccountTypeScreen> {
               onTap: ()=>setState(() {selectedAccountType=index;}),
               child: Container(
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(20)), color: Colors.grey,
+                  borderRadius: const BorderRadius.all(Radius.circular(20)), color: Colors.grey,
                     image: DecorationImage(
                         image: AssetImage(image),
                         fit: BoxFit.fill)

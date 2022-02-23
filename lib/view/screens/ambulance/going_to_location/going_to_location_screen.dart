@@ -21,11 +21,11 @@ class GoingToLocationAmbulanceScreen extends StatefulWidget {
 
 class _GoingToLocationScreenState extends State<GoingToLocationAmbulanceScreen> {
   DeliveryRequestsModel? deliveryRequestsModel;
-  double lat = 9.19497455726949;
-  double lng = 12.461157348341885;
+  double lat = 8.992804;
+  double lng = 7.432491;
   //9.21406397684134, 12.488736896453696
-  double lat_des = 9.21406397684134;
-  double lng_des = 12.488736896453696;
+  double lat_des = 9.087469;
+  double lng_des = 7.494752;
   @override
   void initState() {
     deliveryRequestsModel = Get.arguments;
@@ -77,7 +77,7 @@ class _GoingToLocationScreenState extends State<GoingToLocationAmbulanceScreen> 
               //Container(width: MediaQuery.of(context).size.width, height: MediaQuery.of(context).size.height, color: Colors.blue,),
               Column(
                 children: [
-                  Expanded(child: MapPage(source_location: const LatLng(9.19497455726949, 12.461157348341885), destination_location: const LatLng(9.21406397684134, 12.488736896453696),)),
+                  Expanded(child: MapPage(source_location: const LatLng(8.992804, 7.432491), destination_location: const LatLng(9.087469, 7.494752), icon: 'ambulance',)),
                   const SizedBox(height: 170,)
                 ],
               ),

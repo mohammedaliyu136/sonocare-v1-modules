@@ -202,8 +202,6 @@ class _DoctorVerificationScreenState extends State<DoctorVerificationScreen> {
                     primaryColor: ColorResources.COLOR_WHITE,
                     backgroundColor: ColorResources.COLOR_PURPLE_MID,
                     onTap: ()async{
-                      print(verificationFormController.doctorGetStep1(''));
-                      /*
                       if(step!=4){
                         if(step==1){
                           VerificationModel verificationModel = verificationFormController.doctorStep1Verified(context);
@@ -214,16 +212,14 @@ class _DoctorVerificationScreenState extends State<DoctorVerificationScreen> {
                             });
                           }
                           //dialog(context: context, text: 'Verification Pending for Dr. Prince David!', success: false);
-                        }
-                        if(step==2){
+                        }else if(step==2){
                           VerificationModel verificationModel = verificationFormController.doctorStep2Verified(context);
                           if(verificationModel.verified){
                             setState(() {
                               step+=1;
                             });
                           }
-                        }
-                        if(step==3){
+                        }else if(step==3){
                           VerificationModel verificationModel = verificationFormController.doctorStep3Verified(context);
                           if(verificationModel.verified){
                             setState(() {
@@ -266,7 +262,6 @@ class _DoctorVerificationScreenState extends State<DoctorVerificationScreen> {
 
                         }
                       }
-                      */
                     },
                   ),
                 )

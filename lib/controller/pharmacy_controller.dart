@@ -8,10 +8,29 @@ class PharmacyController extends GetxController implements GetxService {
 
   List<PharmacyRequestsModel> pharmacyRequests = [];
   List<PharmacyRequestsModel> pharmacyRequestsOld = [];
-  List<PharmacyCategoryModel> pharmacyCategories = [];
-  List<PharmacyCategoryModel> pharmacyCategoriesOld = [];
+  List<DrugCategoryModel> pharmacyCategories = [DrugCategoryModel(id: '', name: 'Antiemetics'),DrugCategoryModel(id: '', name: 'Antigout agents'),DrugCategoryModel(id: '', name: 'Anti-inflammatories'),];
+  List<DrugCategoryModel> pharmacyCategoriesOld = [DrugCategoryModel(id: '', name: 'Antiemetics'),DrugCategoryModel(id: '', name: 'Antigout agents'),DrugCategoryModel(id: '', name: 'Anti-inflammatories'),];
   List<PharmacyProductModel> pharmacyProducts= [];
   List<PharmacyProductModel> pharmacyProductsOld = [];
+
+  List<DrugBrandModel> pharmacyBrands = [DrugBrandModel(id: '', name: 'Emzo'),DrugBrandModel(id: '', name: 'J&J'),DrugBrandModel(id: '', name: 'Drug brand'),];
+  List<DrugTypeModel> pharmacyTypes = [DrugTypeModel(id: '', name: 'Tablet'),DrugTypeModel(id: '', name: 'Syrup'),DrugTypeModel(id: '', name: 'Capsule'),DrugTypeModel(id: '', name: 'Injection')];
+
+  get mPharmacyCategories => pharmacyCategories;
+  get mPharmacyBrands => pharmacyBrands;
+  get mPharmacyTypes => pharmacyTypes;
+
+  List<DrugTypeModel> drugTypes = [
+    DrugTypeModel(id: '', name: 'Tablet'),
+    DrugTypeModel(id: '', name: 'Syrup'),
+    DrugTypeModel(id: '', name: 'Capsule'),
+    DrugTypeModel(id: '', name: 'Injection')];
+
+  List<DrugBrandModel> drugBrands = [
+  DrugBrandModel(id: '', name: 'Emzo'),
+  DrugBrandModel(id: '', name: 'J&J'),
+  DrugBrandModel(id: '', name: 'Drug brand')
+  ];
 
   bool loadingPharmacy = false;
 
@@ -62,13 +81,38 @@ class PharmacyController extends GetxController implements GetxService {
     pharmacyRequests = [];
     loadingPharmacy = true;
     await Future.delayed(const Duration(seconds: 3));
+    /*
     for( var i = 0 ; i < 10; i++ ) {
       List<PharmacyProductModel> products = [];
       for( var t = 0 ; t < 5; t++ ) {
         products.add(PharmacyProductModel(name: 'Malaria medication $t'));
       }
       pharmacyRequests.add(PharmacyRequestsModel(id: '$i', name: 'pharm cat $i', products: products, image: '', patientProfile: PatientProfileModel(id: '', name: 'Mohammed Aliyu')));
-    }
+    }*/
+    //-------------------
+    List<PharmacyProductModel> products = [];
+    DrugTypeModel drugType1 = DrugTypeModel(id: '', name: 'Tablet');
+    DrugTypeModel drugType2 = DrugTypeModel(id: '', name: 'Syrup');
+    DrugTypeModel drugType3 = DrugTypeModel(id: '', name: 'Capsule');
+    DrugTypeModel drugType4 = DrugTypeModel(id: '', name: 'Injection');
+
+    DrugBrandModel drugBrand1 = DrugBrandModel(id: '', name: 'Emzo');
+    DrugBrandModel drugBrand2 = DrugBrandModel(id: '', name: 'J&J');
+    DrugBrandModel drugBrand3 = DrugBrandModel(id: '', name: 'Drug brand');
+    products.add(PharmacyProductModel(name: 'Vitamin C', id: '', unitPrice: 200, type: drugType1, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: 'Acetaminophen is used to treat mild to moderate and pain, to treat moderate to severe pain in conjunction with opiates, or to reduce fever. Common conditions treated include headache, muscle aches, arthritis, backache, toothaches, sore throat, colds, flu, and fevers.'));
+    products.add(PharmacyProductModel(name: 'Eye Drop',  id: '', unitPrice: 200, type: drugType2, packPacketPrice: 2000, brand: drugBrand3, dosage: '50/100', description: 'Acetaminophen is used to treat mild to moderate and pain, to treat moderate to severe pain in conjunction with opiates, or to reduce fever. Common conditions treated include headache, muscle aches, arthritis, backache, toothaches, sore throat, colds, flu, and fevers.'));
+    products.add(PharmacyProductModel(name: 'Multivitamins',  id: '', unitPrice: 200, type: drugType3, packPacketPrice: 2000, brand: drugBrand2, dosage: '50/100', description: ''));
+    products.add(PharmacyProductModel(name: 'Inhaler',  id: '', unitPrice: 200, type: drugType1, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
+    products.add(PharmacyProductModel(name: 'Ampiclox',  id: '', unitPrice: 200, type: drugType2, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
+    products.add(PharmacyProductModel(name: 'Postinor',  id: '', unitPrice: 200, type: drugType3, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
+    products.add(PharmacyProductModel(name: 'Paracetamol',  id: '', unitPrice: 200, type: drugType4, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
+
+    pharmacyRequests.add(PharmacyRequestsModel(id: '1', name: 'David Dominic', products: products, image: '', patientProfile: PatientProfileModel(id: '', name: 'Abigail Alexandra')));
+    pharmacyRequests.add(PharmacyRequestsModel(id: '2', name: 'Harry Ian', products: products, image: '', patientProfile: PatientProfileModel(id: '', name: 'Caroline Carolyn')));
+    pharmacyRequests.add(PharmacyRequestsModel(id: '3', name: 'Isaac Jack', products: products, image: '', patientProfile: PatientProfileModel(id: '', name: 'Lillian Lily')));
+    pharmacyRequests.add(PharmacyRequestsModel(id: '4', name: 'Jacob Jake', products: products, image: '', patientProfile: PatientProfileModel(id: '', name: 'Sonia Sophie')));
+
+    //-------------------
     loadingPharmacy = false;
     update();
   }
@@ -78,13 +122,13 @@ class PharmacyController extends GetxController implements GetxService {
     loadingPharmacy = true;
     await Future.delayed(const Duration(seconds: 3));
     for( var i = 0 ; i < 10; i++ ) {
-      pharmacyCategories.add(PharmacyCategoryModel(id: '$i', name: 'pharm cat $i'));
+      pharmacyCategories.add(DrugCategoryModel(id: '$i', name: 'pharm cat $i'));
     }
     loadingPharmacy = false;
     update();
   }
 
-  Future<bool> addPharmacyCategory({required PharmacyCategoryModel pharmacyCategoryModel})async {
+  Future<bool> addPharmacyCategory({required DrugCategoryModel pharmacyCategoryModel})async {
     loadingPharmacy = true;
     update();
     await Future.delayed(const Duration(seconds: 1));
@@ -94,19 +138,36 @@ class PharmacyController extends GetxController implements GetxService {
     update();
     return true;
   }
-  Future<void> updatePharmacyCategory({required PharmacyCategoryModel pharmacyCategoryModel})async {
+  Future<void> updatePharmacyCategory({required DrugCategoryModel pharmacyCategoryModel})async {
     pharmacyCategories[pharmacyCategories.indexOf(pharmacyCategoryModel)].name = pharmacyCategoryModel.name;
     update();
   }
-  Future<void> deletePharmacyCategory({required PharmacyCategoryModel labCategory})async {
+  Future<void> deletePharmacyCategory({required DrugCategoryModel labCategory})async {
     pharmacyCategories.remove(labCategory);
   }
   Future<void> getPharmacyProducts()async{
     pharmacyProducts = [];
     loadingPharmacy = true;
+    /*
     for( var i = 0 ; i < 10; i++ ) {
       pharmacyProducts.add(PharmacyProductModel(id: '$i', name: 'pharm product $i'));
-    }
+    }*/
+    DrugTypeModel drugType1 = DrugTypeModel(id: '', name: 'Tablet');
+    DrugTypeModel drugType2 = DrugTypeModel(id: '', name: 'Syrup');
+    DrugTypeModel drugType3 = DrugTypeModel(id: '', name: 'Capsule');
+    DrugTypeModel drugType4 = DrugTypeModel(id: '', name: 'Injection');
+
+    DrugBrandModel drugBrand1 = DrugBrandModel(id: '', name: 'Emzo');
+    DrugBrandModel drugBrand2 = DrugBrandModel(id: '', name: 'J&J');
+    DrugBrandModel drugBrand3 = DrugBrandModel(id: '', name: 'Drug brand');
+    DrugCategoryModel drugCategory = DrugCategoryModel(id: '', name: 'Antigout agents');
+    pharmacyProducts.add(PharmacyProductModel(name: 'Vitamin C', id: '', category: drugCategory, unitPrice: 200, type: drugType2, packPacketPrice: 2000, brand: drugBrand2, dosage: '50/100', description: 'Acetaminophen is used to treat mild to moderate and pain, to treat moderate to severe pain in conjunction with opiates, or to reduce fever. Common conditions treated include headache, muscle aches, arthritis, backache, toothaches, sore throat, colds, flu, and fevers.'));
+    pharmacyProducts.add(PharmacyProductModel(name: 'Eye Drop',  id: '', category: drugCategory, unitPrice: 200, type: drugType2, packPacketPrice: 2000, brand: drugBrand2, dosage: '70/100', description: 'Acetaminophen is used to treat mild to moderate and pain, to treat moderate to severe pain in conjunction with opiates, or to reduce fever. Common conditions treated include headache, muscle aches, arthritis, backache, toothaches, sore throat, colds, flu, and fevers.'));
+    pharmacyProducts.add(PharmacyProductModel(name: 'Multivitamins',  id: '', unitPrice: 200, type: drugType3, packPacketPrice: 2000, brand: drugBrand2, dosage: '50/100', description: ''));
+    pharmacyProducts.add(PharmacyProductModel(name: 'Inhaler',  id: '', unitPrice: 200, type: drugType1, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
+    pharmacyProducts.add(PharmacyProductModel(name: 'Ampiclox',  id: '', unitPrice: 200, type: drugType2, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
+    pharmacyProducts.add(PharmacyProductModel(name: 'Postinor',  id: '', unitPrice: 200, type: drugType3, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
+    pharmacyProducts.add(PharmacyProductModel(name: 'Paracetamol',  id: '', unitPrice: 200, type: drugType4, packPacketPrice: 2000, brand: drugBrand1, dosage: '50/100', description: ''));
     loadingPharmacy = false;
     update();
   }

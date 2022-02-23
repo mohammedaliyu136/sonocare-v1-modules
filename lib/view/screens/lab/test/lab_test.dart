@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:sonocare_partner2/controller/lab_controller.dart';
 import 'package:sonocare_partner2/data/model/response/lab_model.dart';
 import 'package:sonocare_partner2/util/color_resources.dart';
+import 'package:sonocare_partner2/util/images.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
 import 'package:sonocare_partner2/view/base/textFieldNotStyled.dart';
 import 'package:sonocare_partner2/view/screens/lab/test/widgets/search_text_field.dart';
@@ -44,6 +45,9 @@ class _LabTestScreenState extends State<LabTestScreen> {
           ),
             backgroundColor: Colors.transparent,
             elevation: 0,
+            leading: GestureDetector(
+                onTap: ()=>Get.back(),
+                child: Image.asset(Images.backArrowIcon)),
             actions: [
               IconButton(onPressed: ()=>Get.toNamed('/lab/category/edit', arguments: {'labCategory':labCategory, 'index':index}), icon: const Icon(Icons.edit))
             ],

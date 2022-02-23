@@ -13,6 +13,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:sonocare_partner2/controller/map_controller.dart';
 import 'package:sonocare_partner2/util/app_constants.dart';
 import 'package:sonocare_partner2/util/color_resources.dart';
+import 'package:sonocare_partner2/util/images.dart';
 
 //const LatLng SOURCE_LOCATION = LatLng(9.19497455726949, 12.461157348341885);
 //const LatLng DEST_LOCATION = LatLng(9.21406397684134, 12.488736896453696);
@@ -25,7 +26,8 @@ const double PIN_INVISIBLE_POSITION = -220;
 class MapPage extends StatefulWidget {
   LatLng source_location;
   LatLng destination_location;
-  MapPage({Key? key, required this.source_location, required this.destination_location}) : super(key: key);
+  String icon;
+  MapPage({Key? key, required this.source_location, required this.destination_location, required this.icon}) : super(key: key);
 
   @override
   _MapPageState createState() => _MapPageState();
@@ -87,11 +89,11 @@ class _MapPageState extends State<MapPage> {
         const ImageConfiguration(devicePixelRatio: 2.0),
         'assets/image/you_drop_icon.png'
     );
-
     destinationIcon = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(devicePixelRatio: 10.0),
         //Images.main_logo_sm
-        'assets/image/delivery_drop_icon.png'
+        widget.icon=='ambulance'?'assets/image/ambulance_drop_icon.png':widget.icon=='delivery'?'assets/image/delivery_drop_icon.png':'assets/image/nurse_drop_icon.png'
+        //widget.icon
     );
   }
 
@@ -110,7 +112,7 @@ class _MapPageState extends State<MapPage> {
   @override
   Widget build(BuildContext context) {
 
-    this.setSourceAndDestinationMarkerIcons(context);
+    setSourceAndDestinationMarkerIcons(context);
 
     CameraPosition initialCameraPosition = CameraPosition(
         zoom: CAMERA_ZOOM,

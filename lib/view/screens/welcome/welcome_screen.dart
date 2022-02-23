@@ -8,6 +8,7 @@ import 'package:sonocare_partner2/view/base/normalButton.dart';
 import 'package:sonocare_partner2/view/base/outLineButton.dart';
 import 'package:sonocare_partner2/view/screens/auth/sign_in_screen.dart';
 import 'package:sonocare_partner2/view/screens/auth/sign_up_screen.dart';
+import 'package:sonocare_partner2/view/screens/rating/ratings_screen.dart';
 class WelcomeScreen extends StatefulWidget {
   WelcomeScreen({Key? key}) : super(key: key);
 
@@ -62,13 +63,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 primaryColor: ColorResources.COLOR_WHITE,
                 fontSize: 16,
                 onTap: (){
-                  Get.to(LoginScreen());
-                  /*
+                  ///Get.to(LoginScreen());
+
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => LoginScreen()),
+                    MaterialPageRoute(builder: (context) => RateScreen()),
                   );
-                  */
                 },
               )),
             ],
@@ -91,31 +91,6 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             ],
           ),
         ),
-        /*
-        Padding(
-          padding: const EdgeInsets.only(left: 40.0, right: 40, top: 0, bottom: 10),
-          child: Row(
-            children: [
-              Expanded(child: outLineButton(
-                backgroundColor: ColorResources.COLOR_PURPLE_MID,
-                button_text: 'Sign Up as Doctor',
-                primaryColor: ColorResources.COLOR_WHITE,
-                fontSize: 14,
-                onTap: (){
-                  /*
-                  Provider.of<AuthProvider>(context, listen: false).getServicePreferences();
-                  Provider.of<AuthProvider>(context, listen: false).getDoctorType();
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegisterScreen()),
-                  );
-                  */
-                },
-              )),
-            ],
-          ),
-        ),
-        */
         Row(
           children: [
             Image.asset(Images.scope),

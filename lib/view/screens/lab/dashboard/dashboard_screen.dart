@@ -1,24 +1,40 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sonocare_partner2/controller/lab_controller.dart';
+import 'package:sonocare_partner2/controller/auth_controller.dart';
+import 'package:sonocare_partner2/util/app_constants.dart';
 import 'package:sonocare_partner2/util/color_resources.dart';
 import 'package:sonocare_partner2/view/base/background.dart';
-import 'package:sonocare_partner2/view/screens/lab/dashboard/widgets/search_text_field.dart';
+import 'package:sonocare_partner2/view/base/normalButton.dart';
+import 'package:sonocare_partner2/view/screens/doctor/appointment/appointment_screen.dart';
+import 'package:sonocare_partner2/view/screens/doctor/dashboard/chat_list.dart';
+import 'package:sonocare_partner2/view/screens/doctor/dashboard/settings_screen.dart';
+import 'package:sonocare_partner2/view/screens/doctor/service_preference/service_reference_list_screen.dart';
 
-class LabDashboardScreen extends StatefulWidget {
-  const LabDashboardScreen({Key? key}) : super(key: key);
+import 'widgets/lg_container.dart';
+class DashboardLabScreen extends StatefulWidget {
+  const DashboardLabScreen({Key? key}) : super(key: key);
 
   @override
-  State<LabDashboardScreen> createState() => _LabDashboardScreenState();
+  _DashboardLabScreenState createState() {
+    return _DashboardLabScreenState();
+  }
 }
 
-class _LabDashboardScreenState extends State<LabDashboardScreen> {
-  final searchCategoryController = TextEditingController();
+class _DashboardLabScreenState extends State<DashboardLabScreen> {
   @override
   void initState() {
-    Get.find<LabController>().getLabRequests();
     super.initState();
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  int index = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -26,401 +42,228 @@ class _LabDashboardScreenState extends State<LabDashboardScreen> {
     return Stack(
       children: [
         const BackGround(),
-        Scaffold(
-          backgroundColor: Colors.transparent,
-          appBar: AppBar(title: const Padding(
-            padding: EdgeInsets.only(left: 0.0, top: 10.0, bottom: 20.0),
-            child: Text('Lab Requests', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w400),),
-          ),
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          drawer: Drawer(
-            child: Container(
-              color: Colors.white,
-              child: ListView(
-                padding: EdgeInsets.zero,
-                children: [
-                  DrawerHeader(
-                    decoration: const BoxDecoration(
-                      color: ColorResources.COLOR_PURPLE_MID,
-                      borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(470, 150.0)),
+        GetBuilder<AuthController>(builder: (authController) {
+            return Scaffold(
+              //key: _scaffoldKey,
+              //key: Provider.of<AppProviderNurse>(context, listen: false).scaffoldKey,
+              backgroundColor: Colors.transparent,
+              appBar: AppBar(
+                title: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    SizedBox(height: 4,),
+                    Text('Hello,', style: TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w600),),
+                    SizedBox(height: 4,),
+                    Text('First Name', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),)
+                    //Text(authController.userInfoModel!.firstName, style: const TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),)
+                    //Text('${Provider.of<AuthProvider>(context, listen: false).userInfoModel!.firstName}', style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),)
+                  ],),
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: GestureDetector(
+                      onTap: (){
+                        /*
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ProfileSetUPScreen(upDateProfile:true)),
+                        );
+                        */
+                      },
+                      child: Container(
+                        height: 55,
+                        width: 57,
+                        decoration: const BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(100)),
+                            image:DecorationImage(
+                              fit:BoxFit.fill,
+                              image: NetworkImage(''),
+                            )
+                        ),
+                      ),
                     ),
+                  )
+                ],
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+              ),
+              drawer: Drawer(
+                child: Container(
+                  color: Colors.white,
+                  child: ListView(
+                    padding: EdgeInsets.zero,
+                    children: [
+                      DrawerHeader(
+                        decoration: const BoxDecoration(
+                          color: ColorResources.COLOR_PURPLE_MID,
+                          borderRadius: BorderRadius.vertical(bottom: Radius.elliptical(470, 150.0)),
+                        ),
+                        child: Row(
+                          children: [
+                            const SizedBox(width: 10,),
+                            Container(
+                              height: 70,
+                              width: 70,
+                              decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(100)),
+                                  image:DecorationImage(
+                                    fit:BoxFit.fill,
+                                    image: NetworkImage('image'),
+                                  )
+
+                              ),
+                            ),
+                            const SizedBox(width: 10,),
+                            const Text('Mohammed',  style: TextStyle(fontSize: 20, color: ColorResources.COLOR_WHITE),)
+
+                          ],
+                        ),
+                      ),
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(left: 60, top: 0, bottom: 0),
+                        title: const Text('PROFILE'),//Profile
+                        onTap: () {},
+                      ),
+                      const Divider(),
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(left: 60, top: 0, bottom: 0),
+                        title: const Text('LAB REQUESTS'),//Profile
+                        onTap: () {Get.toNamed('/lab/request/list');},
+                      ),
+                      const Divider(),
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(left: 60, top: 0, bottom: 0),
+                        title: const Text('LAB TESTS'),//Profile
+                        onTap: () {Get.toNamed('/lab/categories');},
+                      ),
+                      const Divider(),
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(left: 60),
+                        title: const Text('WALLET'),//Wallet
+                        onTap: () {
+                          Get.toNamed('/wallet');
+                        },
+                      ),
+                      const Divider(),
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(left: 60),
+                        title: const Text('REVIEWS'),//Reviews
+                        onTap: () {Get.toNamed('/reviews');},
+                      ),
+                      const Divider(),
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(left: 60),
+                        title: const Text('SETTINGS'),//Settings
+                        onTap: () {},
+                      ),
+                      const Divider(),
+                      ListTile(
+                        contentPadding: const EdgeInsets.only(left: 60),
+                        title: const Text('LOGOUT'),//Logout
+                        onTap: () async {Get.toNamed('/');},
+                      ),
+                      const SizedBox(height: 100,)
+                    ],
+                  ),
+                ),
+              ),
+              body: index==0?Padding(
+                padding: const EdgeInsets.only(left: 18.0,right: 18, top: 10, bottom: 0),
+                child: ListView(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10, top: 20, bottom: 20),
                     child: Row(
                       children: [
-                        const SizedBox(width: 10,),
-                        Container(
-                          height: 70,
-                          width: 70,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(100)),
-                              image:DecorationImage(
-                                fit:BoxFit.fill,
-                                image: NetworkImage('image'),
-                              )
-
-                          ),
-                        ),
-                        const SizedBox(width: 10,),
-                        const Text('Mohammed',  style: TextStyle(fontSize: 20, color: ColorResources.COLOR_WHITE),)
-
+                        Expanded(child: normalButton(
+                          backgroundColor: ColorResources.COLOR_PURPLE_MID,
+                          button_text: 'Update Profile',
+                          primaryColor: ColorResources.COLOR_WHITE,
+                          fontSize: 16,
+                          onTap: (){
+                            Get.toNamed('/profile/update');
+                            /*
+                            int stateId = authController.userInfoModel!.stateID==null?-1:int.parse(Provider.of<AuthProvider>(context, listen: false).userInfoModel!.stateID);
+                            int lgaId = authController.userInfoModel!.lgaID==null?-1:int.parse(Provider.of<AuthProvider>(context, listen: false).userInfoModel!.lgaID);
+                            Provider.of<FormProvider>(context, listen: false).getStates(selectedState: stateId, selectedLGA: lgaId);
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProfileSetUPScreen(upDateProfile:true)),
+                            );*/
+                          },
+                        )),
                       ],
                     ),
                   ),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(left: 60, top: 0, bottom: 0),
-                    title: const Text('PROFILE'),//Profile
-                    onTap: () {},
-                  ),
-                  const Divider(),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(left: 60, top: 0, bottom: 0),
-                    title: const Text('LAB TESTS'),//Profile
-                    onTap: () {Get.toNamed('/lab/categories');},
-                  ),
-                  const Divider(),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(left: 60),
-                    title: const Text('WALLET'),//Wallet
-                    onTap: () {
-                      Get.toNamed('/wallet');
+                  GestureDetector(
+                    child: LGConatiner(heading: 'Set Preference', body: 'Schedule a consultation with a doctor',),
+                    onTap: (){
+                      authController.getConsultationType();
+                      authController.getConsultationFee();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const ServicePreferenceListScreen()),
+                      );
                     },
                   ),
-                  const Divider(),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(left: 60),
-                    title: const Text('REVIEWS'),//Reviews
-                    onTap: () {Get.toNamed('/reviews');},
+                  const SizedBox(height: 20,),
+                  GestureDetector(
+                    child: LGConatiner(heading: 'Lab Requests', body: 'You have no bookings at the moment', imageUrl: 'assets/icons/appointment_icon.png'),
+                    onTap: (){
+                      print('get Lab Requests');
+                      /*
+                      String token = Provider.of<AuthProvider>(context, listen: false).token;
+                      Provider.of<AppointmentProvider>(context, listen: false).getAppointments(context, token, '0');
+                       */
+                      Get.toNamed('/lab/request/list');
+
+                    },
                   ),
-                  const Divider(),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(left: 60),
-                    title: const Text('SETTINGS'),//Settings
-                    onTap: () {},
+                  const SizedBox(height: 20,),
+                  GestureDetector(
+                    onTap: (){
+                      print('get Lab tests');
+                      Get.toNamed('/lab/categories');
+                    },
+                    child: LGConatiner(heading: 'Lab Tests', body: 'You have no bookings at the moment', bgColorTXT:'colored', imageUrl: 'assets/icons/consultation_icon.png'),
                   ),
-                  const Divider(),
-                  ListTile(
-                    contentPadding: const EdgeInsets.only(left: 60),
-                    title: const Text('LOGOUT'),//Logout
-                    onTap: () async {Get.toNamed('/');},
+                  const SizedBox(height: 30,),
+                ],),
+              ):SettingsScreenDash(),
+              bottomNavigationBar: BottomNavigationBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                showSelectedLabels: false,
+                showUnselectedLabels: false,
+                selectedItemColor: Colors.green,
+                iconSize: 40,
+                currentIndex: index,
+                onTap: (current_index){
+                  setState(() {
+                    index=current_index;
+                  });
+                },
+                items: <BottomNavigationBarItem>[
+                  BottomNavigationBarItem(
+                      icon: index==0?
+                      Image.asset("assets/icons/home_icon.png", height: 40, width: 40)
+                          :Image.asset("assets/icons/home_icon_light.png", height: 40, width: 40),
+                      label: 'ss',
+                      backgroundColor: Colors.green
                   ),
-                  const SizedBox(height: 100,)
+                  BottomNavigationBarItem(
+                    icon: index==2?
+                    Image.asset("assets/icons/settings_icon.png", height: 40, width: 40)
+                        :Image.asset("assets/icons/settings_icon_light.png", height: 40, width: 40),
+                    label: 'qq',
+                  ),
                 ],
               ),
-            ),
-          ),
-          body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Column(
-              children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 0, bottom: 10),
-                  child: SearchTextFieldNotStyled(),
-                ),
-                const SizedBox(height: 8,),
-                Expanded(
-                  child: GetBuilder<LabController>(builder: (labController) {
-                    if(labController.loadingLab){
-                      return const Center(child: Text('Loading...'),);
-                    }else if(labController.labRequests.isEmpty){
-                      return const Center(child: Text('You don\'t have any requests yet.'),);
-                    }else{
-                      return ListView.builder(
-                        itemCount: labController.labRequests.length,
-                        itemBuilder: (context, index) {
-                          if(labController.labRequests.length-1==index){
-                            return Column(children: [
-                              GestureDetector(
-                                onTap: (){Get.toNamed('/lab/tests');},
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(vertical: 4.0),
-                                  child: Container(
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(Radius.circular(10)),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(18.0),
-                                      child: Row(children: [
-                                        Container(
-                                          height: 50,
-                                          width: 50,
-                                          decoration: const BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius: BorderRadius.all(Radius.circular(100)),
-                                          ),
-                                          child: Image.network(
-                                            '',
-                                            fit: BoxFit.cover,
-                                            loadingBuilder: (context, child, loadingProgress) {
-                                              if (loadingProgress == null) return child;
-
-                                              return const Center(child: Text('Loading...'));
-                                              // You can use LinearProgressIndicator or CircularProgressIndicator instead
-                                            },
-                                            errorBuilder: (context, error, stackTrace) =>
-                                            //Text('Some errors occurred!'),
-                                            Image.asset("assets/dummy/profile_dummy.png"),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 10,),
-                                        Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(labController.labRequests[index].name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
-                                            const SizedBox(height: 10,),
-                                            Row(
-                                              children: [
-                                                Text(labController.labRequests[index].date, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                                const SizedBox(width: 20,),
-                                                Text(labController.labRequests[index].time, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                              ],
-                                            ),
-                                          ],)
-                                      ],),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 70,)
-                            ],);
-                          }
-                          return GestureDetector(
-                            onTap: (){
-                              Get.toNamed('/lab/request/accept', arguments: labController.labRequests[index]);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4.0),
-                              child: Container(
-                                decoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.all(Radius.circular(10)),
-                                ),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(18.0),
-                                  child: Row(children: [
-                                    Container(
-                                      height: 50,
-                                      width: 50,
-                                      decoration: const BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.all(Radius.circular(100)),
-                                      ),
-                                      child: Image.network(
-                                        '',
-                                        fit: BoxFit.cover,
-                                        loadingBuilder: (context, child, loadingProgress) {
-                                          if (loadingProgress == null) return child;
-
-                                          return const Center(child: Text('Loading...'));
-                                          // You can use LinearProgressIndicator or CircularProgressIndicator instead
-                                        },
-                                        errorBuilder: (context, error, stackTrace) =>
-                                        //Text('Some errors occurred!'),
-                                        Image.asset("assets/dummy/profile_dummy.png"),
-                                      ),
-                                    ),
-                                    const SizedBox(width: 10,),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text(labController.labRequests[index].name, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
-                                        const SizedBox(height: 10,),
-                                        Row(
-                                          children: [
-                                            Text(labController.labRequests[index].date, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                            const SizedBox(width: 20,),
-                                            Text(labController.labRequests[index].time, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                          ],
-                                        ),
-                                      ],)
-                                  ],),
-                                ),
-                              ),
-                            ),
-                          );
-                        });
-                      /*
-                      return ListView(children: [
-                        GestureDetector(
-                          onTap: (){
-                            Get.toNamed('/lab/request/accept');
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 4.0),
-                            child: Container(
-                              decoration: const BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: const BorderRadius.all(Radius.circular(10)),
-                              ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: Row(children: [
-                                  Container(
-                                    height: 50,
-                                    width: 50,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(Radius.circular(100)),
-                                      //image:DecorationImage(
-                                      //  fit:BoxFit.fill,
-                                      //  image: AssetImage("assets/dummy/profile_dummy.png"),
-                                      // )
-                                    ),
-                                    child: Image.network(
-                                      '',
-                                      fit: BoxFit.cover,
-                                      loadingBuilder: (context, child, loadingProgress) {
-                                        if (loadingProgress == null) return child;
-
-                                        return const Center(child: const Text('Loading...'));
-                                        // You can use LinearProgressIndicator or CircularProgressIndicator instead
-                                      },
-                                      errorBuilder: (context, error, stackTrace) =>
-                                      //Text('Some errors occurred!'),
-                                      Image.asset("assets/dummy/profile_dummy.png"),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 10,),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      const Text('patientName', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
-                                      const SizedBox(height: 10,),
-                                      Row(
-                                        children: const [
-                                          Text('getDate()', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                          SizedBox(width: 20,),
-                                          Text('getTime()', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                        ],
-                                      ),
-                                    ],)
-                                ],),
-                              ),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(18.0),
-                              child: Row(children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                                    //image:DecorationImage(
-                                    //  fit:BoxFit.fill,
-                                    //  image: AssetImage("assets/dummy/profile_dummy.png"),
-                                    // )
-                                  ),
-                                  child: Image.network(
-                                    '',
-                                    fit: BoxFit.cover,
-                                    loadingBuilder: (context, child, loadingProgress) {
-                                      if (loadingProgress == null) return child;
-
-                                      return const Center(child: const Text('Loading...'));
-                                      // You can use LinearProgressIndicator or CircularProgressIndicator instead
-                                    },
-                                    errorBuilder: (context, error, stackTrace) =>
-                                    //Text('Some errors occurred!'),
-                                    Image.asset("assets/dummy/profile_dummy.png"),
-                                  ),
-                                ),
-                                const SizedBox(width: 10,),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text('patientName', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
-                                    const SizedBox(height: 10,),
-                                    Row(
-                                      children: const [
-                                        Text('getDate()', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                        SizedBox(width: 20,),
-                                        Text('getTime()', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                      ],
-                                    ),
-                                  ],)
-                              ],),
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 4.0),
-                          child: Container(
-                            decoration: const BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: const BorderRadius.all(Radius.circular(10)),
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(18.0),
-                              child: Row(children: [
-                                Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.all(Radius.circular(100)),
-                                    //image:DecorationImage(
-                                    //  fit:BoxFit.fill,
-                                    //  image: AssetImage("assets/dummy/profile_dummy.png"),
-                                    // )
-                                  ),
-                                  child: Image.network(
-                                    '',
-                                    fit: BoxFit.cover,
-                                    loadingBuilder: (context, child, loadingProgress) {
-                                      if (loadingProgress == null) return child;
-
-                                      return const Center(child: const Text('Loading...'));
-                                      // You can use LinearProgressIndicator or CircularProgressIndicator instead
-                                    },
-                                    errorBuilder: (context, error, stackTrace) =>
-                                    //Text('Some errors occurred!'),
-                                    Image.asset("assets/dummy/profile_dummy.png"),
-                                  ),
-                                ),
-                                const SizedBox(width: 10,),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    const Text('patientName', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),),
-                                    const SizedBox(height: 10,),
-                                    Row(
-                                      children: const [
-                                        Text('getDate()', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                        SizedBox(width: 20,),
-                                        Text('getTime()', style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),),
-                                      ],
-                                    ),
-                                  ],)
-                              ],),
-                            ),
-                          ),
-                        ),
-                      ],);
-                      */
-                    }
-                    }
-                  ),
-                )
-              ],
-            ),
-          ),
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: ColorResources.COLOR_PURPLE_DEEP,
-            child: const Icon(Icons.add, color: Colors.white),
-            onPressed: ()=>Get.toNamed('/lab/categories'),
-          ),
+            );
+          }
         ),
       ],
     );
